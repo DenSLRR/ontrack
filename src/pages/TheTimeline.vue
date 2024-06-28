@@ -1,7 +1,18 @@
 <template>
-    <h1>Hello</h1>
+    <div class="mt-7">
+        <ul>
+            <TimelineItem v-for="timelineItem in timelineItems" :key="timelineItem.hour" :timeline-item="timelineItem"/>
+             
+        </ul>
+    </div>
 </template>
 
-<script setup></script>
+<script setup>
+import TimelineItem from "../components/TimelineItem.vue";
+
+defineProps(['timelineItems'])
+
+
+</script>
 
 <style scoped></style>

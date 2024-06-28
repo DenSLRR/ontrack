@@ -2,7 +2,7 @@
     <TheHeader @go-to-progress="goTo(PAGE_PROGRESS)" @go-to-timline="goTo(PAGE_TIMELINE)" />
 
     <main class="flex flex-grow flex-col">
-        <TheTimeline v-show="currentPage === PAGE_TIMELINE" />
+        <TheTimeline :timeline-items="timelineItems" v-show="currentPage === PAGE_TIMELINE" />
         <TheActivities v-show="currentPage === PAGE_ACTIVITIES" />
         <TheProgress v-show="currentPage === PAGE_PROGRESS" />
     </main>
@@ -18,7 +18,8 @@ import TheActivities from "./pages/TheActivities.vue";
 import TheProgress from "./pages/TheProgress.vue";
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from "./constants.js";
 import { ref, reactive } from "vue";
-import {normalizePageHash} from './functions'
+import {normalizePageHash, generateTimelineItems} from './functions'
+
 
 const currentPage = ref(normalizePageHash());
 
@@ -29,6 +30,8 @@ function goTo(page) {
 const onPageChange = (page) => {
     currentPage.value = page;
 };
+
+const timelineItems = ref(generateTimelineItems());
 </script>
 
 <style></style>

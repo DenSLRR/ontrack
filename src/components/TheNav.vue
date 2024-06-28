@@ -19,7 +19,12 @@
 <script setup>
 import NavItem from "./NavItem.vue";
 import { NAV_ITEMS } from "@/constants";
-const props = defineProps(["currentPage"]);
+const props = defineProps({
+    currentPage: {
+        required: true,
+        type: String,
+    }
+});
 
 const emits = defineEmits(["page-change"]);
 

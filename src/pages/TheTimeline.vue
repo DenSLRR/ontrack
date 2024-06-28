@@ -10,9 +10,13 @@
 <script setup>
 import TimelineItem from "../components/TimelineItem.vue";
 
-defineProps(['timelineItems'])
-
-
+// defineProps(['timelineItems'])
+defineProps({
+  timelineItems: {
+    required: true,
+    type: Array
+  }
+})
 </script>
 
 <style scoped></style>

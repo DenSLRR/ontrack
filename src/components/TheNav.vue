@@ -8,7 +8,7 @@
                 :class="{
                     'bg-gray-200 pointer-events-none': page === currentPage,
                 }"
-                @click="currentPage = page"
+                @click="() => handleClick(page)"
             >
                 <component :is="icon" class="h-6 w-6" /> {{ page }}
             </NavItem>
@@ -23,15 +23,21 @@ import {
     ChartBarIcon,
 } from "@heroicons/vue/24/outline";
 import NavItem from "./NavItem.vue";
-import { ref } from "vue";
+import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from "../constants";
+
+const props = defineProps(["currentPage"]);
+
+const emits = defineEmits(["page-change"]);
 
 const navItems = {
-    timeline: ClockIcon,
-    activities: ListBulletIcon,
-    progress: ChartBarIcon,
+    [PAGE_TIMELINE]: ClockIcon,
+    [PAGE_ACTIVITIES]: ListBulletIcon,
+    [PAGE_PROGRESS]: ChartBarIcon,
 };
 
-const currentPage = ref("timeline");
+const handleClick = (page) => {
+    emits("page-change", page);
+};
 </script>
 
 <style scoped></style>

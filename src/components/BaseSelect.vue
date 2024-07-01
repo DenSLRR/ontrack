@@ -31,6 +31,9 @@ defineProps({
   options: {
     type: Array,
     required: true,
+    validator(options) {
+      return options.every(({value, label}) => typeof value === 'number' && typeof label === 'string')
+    }
   },
   placeholder: {
     required: true,
